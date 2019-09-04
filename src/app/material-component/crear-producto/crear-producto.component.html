@@ -1,0 +1,59 @@
+<div class="row">
+      <div  fxFlex.gt-sm="100%" fxFlex="100">
+       <mat-card>
+          <h2>Formulario para la creación de productos</h2>
+
+          <form [formGroup]="firstFormGroup" class="form-estyle">
+                  <mat-form-field>
+                      <input matInput placeholder="nombre" formControlName="nombre" required>
+                  </mat-form-field>
+
+                  <mat-form-field >
+                      <input matInput placeholder="descripcion" formControlName="descripcion" required>
+                  </mat-form-field>
+
+                  <mat-form-field >
+                      <input matInput placeholder="detalle" formControlName="detalle" required>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Referencia</mat-label>
+                    <mat-select [(value)]="referencia">
+                      <mat-option value="sin referencia">Selecciona Referencia del articulo</mat-option>
+                      <mat-option *ngFor="let referencia of referencias" [value]="referencia.value">
+                        {{referencia.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field >
+                      <input matInput placeholder="valor" type='number' formControlName="valor" required>
+                  </mat-form-field>
+
+                  <mat-form-field >
+                      <input matInput placeholder="cantidad" type='number' formControlName="cantidad" required>
+                  </mat-form-field>
+
+                  <mat-form-field >
+                      <input matInput placeholder="codigo" formControlName="codigo" required>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Tipo</mat-label>
+                    <mat-select [(value)]="tipo">
+                      <mat-option value="sin tipo">Selecciona Tipo del articulo</mat-option>
+                      <mat-option *ngFor="let referencia of tipos" [value]="referencia.value">
+                        {{referencia.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+
+          </form>
+              <div class="buttons-style">
+                <button mat-raised-button color="primary" [disabled]="!(firstFormGroup.valid)" (click)="onGuardar()">Guardar</button>
+                <button mat-raised-button color="warn" [routerLink]="['/starter']">Cancelar</button>
+              </div>
+        </mat-card>
+      </div>
+</div>

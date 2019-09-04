@@ -1,0 +1,75 @@
+
+<div class="row">
+      <div  fxFlex.gt-sm="100%" fxFlex="100">
+          <mat-card>
+            <h1>Productos Disponibles</h1>
+            <div class="buttons-style">
+                <button mat-raised-button color="primary" [routerLink]="['/crear-producto']">Crear producto</button>
+            </div>
+            <mat-form-field >
+              <input clas="filter-input" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="codigo">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="referencia">
+              <th mat-header-cell *matHeaderCellDef> Referencia </th>
+              <td mat-cell *matCellDef="let element"> {{element.referencia}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="valor">
+              <th mat-header-cell *matHeaderCellDef> Valor </th>
+              <td mat-cell *matCellDef="let element"> {{element.valor}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tipo">
+              <th mat-header-cell *matHeaderCellDef> Tipo </th>
+              <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="stock">
+              <th mat-header-cell *matHeaderCellDef> Stock </th>
+              <td mat-cell *matCellDef="let element"> {{element.cantidad}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="buttons">
+              <th mat-header-cell *matHeaderCellDef> Buttons </th>
+              <td mat-cell *matCellDef="let element">
+                <button *ngIf="element.cantidad>0" mat-mini-fab color="primary" [routerLink]="['/registrar-venta',element.id]"><i class="material-icons">
+                add_shopping_cart
+                </i></button>
+
+                <button mat-mini-fab color="primary" (click)="onDelete(element.id)"><i class="material-icons">
+                delete
+                </i></button>
+                <button mat-mini-fab color="primary" [routerLink]="['/registrar-compra',element.id]"><i class="material-icons">
+                add
+                </i></button>
+                <button mat-mini-fab color="primary" [routerLink]="['/editar-producto',element.id]"><i class="material-icons">
+                create
+                </i></button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </mat-card>
+
+    </div>
+</div>

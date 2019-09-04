@@ -1,0 +1,33 @@
+<div class="row">
+      <div  fxFlex.gt-sm="100%" fxFlex="100">
+       <mat-card>
+       <h2>Registrar venta</h2>
+          <form [formGroup]="firstFormGroup" class="form-estyle">
+
+                  <mat-form-field>
+                      <input matInput placeholder="Producto"  disabled value="{{productInfo.name}}">
+                  </mat-form-field>
+
+                  <mat-form-field >
+                      <input matInput placeholder="Cantidad Disponible"  disabled value="{{productInfo.cantidad}}">
+                  </mat-form-field>
+
+                  <mat-form-field >
+                      <input matInput placeholder="Cantidad" type='number' formControlName="cantidad" [(value)]="cantidad" (change)="actualizarValor()"  required>
+                  </mat-form-field>
+
+                  <mat-form-field >
+                      <input matInput placeholder="Unitario"  disabled value="{{productInfo.valor}}">
+                  </mat-form-field>
+
+                  <mat-form-field >
+                      <input matInput placeholder="Valor"  [(value)]="valorTotal"  disabled >
+                  </mat-form-field>
+          </form>
+              <div class="buttons-style">
+                <button mat-raised-button color="primary" [disabled]="cantidad<=0" (click)="onGuardar()">Vender</button>
+                <button mat-raised-button color="warn" [routerLink]="['/starter']">Cancelar</button>
+              </div>
+        </mat-card>
+      </div>
+</div>
